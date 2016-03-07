@@ -1,5 +1,10 @@
 #click-main {
 
   height: 100px;
-  
+
+}
+
+#apv-count {
+  font-weight: bold;
+  font-size: 75px;
 }
