@@ -98,6 +98,23 @@ var norris = {
 }
 
 
+
+var exCrisis = {
+  active: false,
+  cost: 100000,
+  quantity: 0,
+  value: 2000,
+  buyThis: function() {
+      if (apvCount >= this.cost) {
+        this.quantity += 1;
+        apvCount -= this.cost;
+        this.cost = Math.floor(1000 * Math.pow(1.2, this.quantity));
+        $apv.text(apvCount);
+        $('#procrast-cost').text(this.cost);
+      }
+  }
+}
+
 $("#click-main").on('click', function(event) {
   arbitryClick(clickPower);
 })
