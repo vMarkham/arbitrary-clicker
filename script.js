@@ -1,6 +1,6 @@
 var $apv = $('#apv-count');
 var $fishermenCost = $('#fishermen-cost');
-var apvCount = 10000;
+var apvCount = 0;
 var clickPower = 1;
 
 
@@ -8,6 +8,16 @@ var clickPower = 1;
 var arbitryClick = function(number) {
   apvCount = apvCount + number;
   $apv.text(apvCount);
+  var $boxes = $('div.btn-box');
+
+  for (var i = 0; i < btnArray.length; i++) {
+    if (apvCount >= btnArray[i].cost) {
+      var $thisBox = $boxes.eq(i);
+      $thisBox.slideDown("fast", function() {
+        //Stuff to do *after* the animation takes place
+      })
+    }
+  }
 }
 
 var getNorris = function () {
@@ -97,9 +107,7 @@ var norris = {
   }
 }
 
-
-
-var exCrisis = {
+var plat = {
   active: false,
   cost: 100000,
   quantity: 0,
@@ -108,12 +116,30 @@ var exCrisis = {
       if (apvCount >= this.cost) {
         this.quantity += 1;
         apvCount -= this.cost;
-        this.cost = Math.floor(1000 * Math.pow(1.2, this.quantity));
+        this.cost = Math.floor(100000 * Math.pow(1.2, this.quantity));
         $apv.text(apvCount);
-        $('#procrast-cost').text(this.cost);
+        $('#plat-cost').text(this.cost);
       }
   }
 }
+
+var exist = {
+  active: false,
+  cost: 1000000,
+  quantity: 0,
+  value: 11100,
+  buyThis: function() {
+      if (apvCount >= this.cost) {
+        this.quantity += 1;
+        apvCount -= this.cost;
+        this.cost = Math.floor(1000000 * Math.pow(1.2, this.quantity));
+        $apv.text(apvCount);
+        $('#exist-cost').text(this.cost);
+      }
+  }
+}
+
+var btnArray = [fishermen, clickUp, procrast, norris, plat, exist];
 
 $("#click-main").on('click', function(event) {
   arbitryClick(clickPower);
@@ -135,8 +161,19 @@ $('#norris-btn').on('click', function(event) {
   norris.buyThis();
 })
 
+$('#plat-btn').on('click', function(event) {
+  plat.buyThis();
+})
+
+$('#exist-btn').on('click', function(event) {
+  exist.buyThis();
+})
+
 window.setInterval(function() {
 arbitryClick(fishermen.quantity*fishermen.value);
 arbitryClick(procrast.quantity*procrast.value);
 arbitryClick(norris.quantity*norris.value);
+arbitryClick(plat.quantity*plat.value);
+arbitryClick(exist.quantity*exist.value);
+
 }, 1000);
