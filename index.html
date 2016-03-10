@@ -71,7 +71,7 @@
             </div>
             <div class="col-sm-4 btn-box" hidden="true">
               <button  id="procrast-btn" class="btn btn-info" type="button" name="button">Science</button><span>Cost = </span><span id="procrast-cost">1000</span>
-              <p>Spend a few hours diligently researching the cure to procrastination. (+100 APV/sec.)
+              <p>Spend a few hours diligently researching the cure to procrastination. (+25 APV/sec.)
               </p>
             </div>
             <div id="norris-box" class="col-sm-4 btn-box" hidden="true">
@@ -105,7 +105,7 @@
               <h4 class="modal-title" id="myModalLabel">Achievements</h4>
             </div>
             <div class="modal-body">
-              You got 100 APV!
+              You've earned 100APV!
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -121,7 +121,13 @@
               <h4 class="modal-title" id="myModalLabel">Statistics</h4>
             </div>
             <div class="modal-body">
-              You have clicked X times!
+              <ul id="stats-list">
+                <li id="stats-clicks">You have clicked test times.</li>
+                <li id="stats-earned">You have earned 0 APV.</li>
+                <li id="stats-power">Your click power is 1 APV per click.</li>
+                <li id="stats-passive-total">You earn 0 APV per second from your upgrades.</li>
+
+              </ul>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

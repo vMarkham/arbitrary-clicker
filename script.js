@@ -2,14 +2,23 @@ var $apv = $('#apv-count');
 var $fishermenCost = $('#fishermen-cost');
 var apvCount = 0; //cheat here,
 var clickPower = 1; //or here.
+var totalEarned = 0;
+var totalSpent = 0;
+var totalClicks = 0;
+var passiveTotal = 0;
 
-
+var updateStats = function () {
+    $('li#stats-clicks').text("You have clicked " + totalClicks + " times.");
+    $('li#stats-earned').text("you have earned a total of " + totalEarned + " APV.");
+    $('li#stats-power').text("Your click power is " + clickPower + " APV per click.")
+    $('li#stats-passive-total').text("You earn " + passiveTotal + " APV per second from your upgrades.")
+}
 
 var arbitryClick = function(number) {
   apvCount = apvCount + number;
   $apv.text(apvCount);
   var $boxes = $('div.btn-box');
-
+  totalEarned += number;
   for (var i = 0; i < btnArray.length; i++) {
     if (apvCount >= btnArray[i].cost) {
       var $thisBox = $boxes.eq(i);
@@ -18,6 +27,7 @@ var arbitryClick = function(number) {
       })
     }
   }
+  updateStats();
 }
 
 var getNorris = function () {
@@ -40,9 +50,6 @@ var getNorris = function () {
   })
 }
 
-var checkAchieve = function() {
-  
-}
 
 var fishermen = {
   active: false,
@@ -56,6 +63,7 @@ var fishermen = {
         this.cost = Math.floor(15 * Math.pow(1.2, this.quantity));
         $apv.text(apvCount);
         $fishermenCost.text(this.cost);
+        passiveTotal += this.value;
       }
   }
 }
@@ -89,6 +97,7 @@ var procrast = {
         this.cost = Math.floor(1000 * Math.pow(1.2, this.quantity));
         $apv.text(apvCount);
         $('#procrast-cost').text(this.cost);
+        passiveTotal += this.value;
       }
   }
 }
@@ -107,6 +116,7 @@ var norris = {
         $apv.text(apvCount);
         $('#norris-cost').text(this.cost);
         getNorris();
+        passiveTotal += this.value;
       }
   }
 }
@@ -123,6 +133,7 @@ var plat = {
         this.cost = Math.floor(100000 * Math.pow(1.2, this.quantity));
         $apv.text(apvCount);
         $('#plat-cost').text(this.cost);
+        passiveTotal += this.value;
       }
   }
 }
@@ -139,6 +150,7 @@ var exist = {
         this.cost = Math.floor(1000000 * Math.pow(1.2, this.quantity));
         $apv.text(apvCount);
         $('#exist-cost').text(this.cost);
+        passiveTotal += this.value;
       }
   }
 }
@@ -147,6 +159,7 @@ var btnArray = [fishermen, clickUp, procrast, norris, plat, exist];
 
 $("#click-main").on('click', function(event) {
   arbitryClick(clickPower);
+  totalClicks += 1;
 })
 
 $('#fishermen-btn').on('click', function(event) {
