@@ -1,7 +1,7 @@
 var $apv = $('#apv-count');
 var $fishermenCost = $('#fishermen-cost');
-var apvCount = 0;
-var clickPower = 1;
+var apvCount = 0; //cheat here,
+var clickPower = 1; //or here.
 
 
 
@@ -38,6 +38,10 @@ var getNorris = function () {
       }).delay(5000);
     }
   })
+}
+
+var checkAchieve = function() {
+  
 }
 
 var fishermen = {

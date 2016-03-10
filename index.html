@@ -33,9 +33,14 @@
         <div class="row">
           <aside class="col-sm-3 col-md-2 sidebar">
             <ul id="sidebar" class="nav nav-sidebar list-group">
-              <li class="active list-group-item">Place of Clicking!</li>
-              <li class="list-group-item">Land of Achievement!</li>
-              <li class="list-group-item">Place of Power!</li>
+              <li class="active list-group-item">Look at this sidebar!</li>
+              <li class="list-group-item"><button type="button" class="
+                btn-link" data-toggle="modal" data-target="#achieve-modal">
+                Achievements
+              </button></li>
+              <li class="list-group-item"><button type="button" class="btn-link" data-toggle="modal" data-target="#stats-modal">
+                Statistics
+              </button></li>
             </ul>
           </aside>
           <div class="col-sm-9 main">
@@ -87,6 +92,41 @@
 
           </div>
 
+        </div>
+      </div>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="achieve-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Achievements</h4>
+            </div>
+            <div class="modal-body">
+              You got 100 APV!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="stats-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Statistics</h4>
+            </div>
+            <div class="modal-body">
+              You have clicked X times!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
       </div>
 
