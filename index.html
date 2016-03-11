@@ -23,10 +23,8 @@
     <nav class="navbar navbar-default navbar-static-top ">
       <div class="container-fluid">
         <div class="navbar-header">
-
           <a class="navbar-brand" href="#">Arbitrary Clicker!</a>
         </div>
-
       </div>
     </nav>
       <div class="container-fluid">
@@ -41,7 +39,14 @@
               <li class="list-group-item"><button type="button" class="btn-link" data-toggle="modal" data-target="#stats-modal">
                 Statistics
               </button></li>
+              <li class="list-group-item"><button type="button" class="
+                btn-link" data-toggle="modal" data-target="#form-modal">
+                Sign up
+              </button></li>
             </ul>
+            <div class="" id="log">
+
+            </div>
           </aside>
           <div class="col-sm-9 main">
             <div class="col-sm-4">
@@ -86,26 +91,23 @@
             </div>
             <div class="col-sm-4 btn-box" hidden="true">
               <button  id="exist-btn" class="btn btn-info" type="button" name="button">Existential Crisis</button><span>Cost = </span><span id="exist-cost">1000000</span>
-              <p>Your life is meaningless. Everything you ever knew was a lie. (+11100 APV/sec.)
+              <p>Your life is meaningless. Everything you've ever known was a lie. (+11100 APV/sec.)
               </p>
             </div>
-
           </div>
-
         </div>
       </div>
 
 
       <!-- Modal -->
-      <div class="modal fade" id="achieve-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
+      <div class="modal fade" id="achieve-modal" tabindex="-1">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Achievements</h4>
+              <button type="button" class="close" data-dismiss="modal" ><span >&times;</span></button>
+              <h4 class="modal-title" id="achieve-label">Achievements</h4>
             </div>
-            <div class="modal-body">
-              You've earned 100APV!
+            <div id="cheevo-box" class="modal-body">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -113,12 +115,12 @@
           </div>
         </div>
       </div>
-      <div class="modal fade" id="stats-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
+      <div class="modal fade" id="stats-modal" tabindex="-1">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Statistics</h4>
+              <button type="button" class="close" data-dismiss="modal"><span >&times;</span></button>
+              <h4 class="modal-title" id="stats-label">Statistics</h4>
             </div>
             <div class="modal-body">
               <ul id="stats-list">
@@ -135,6 +137,33 @@
           </div>
         </div>
       </div>
+      <div class="modal fade" id="form-modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span >&times;</span></button>
+              <h4 class="modal-title" id="form-label">Sign up here to enable saving!<small>(Don't actually do this. It will erase your progress.)</small></h4>
+            </div>
+            <div class="modal-body">
+              <form class="" action="index.html" method="post">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" name="name" value="" required>
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" value="" required>
+                <label for="phone">Phone number</label>
+                <input class="form-control" type="tel" name="phone" value="" required>
+                <label for="age">Age</label>
+                <input class="form-control" type="number" name="age" value="0" min="0" max="105" required>
+                <input class="btn" type="submit" name="submit" value="Submit">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

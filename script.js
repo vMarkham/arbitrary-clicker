@@ -7,7 +7,77 @@ var totalSpent = 0;
 var totalClicks = 0;
 var passiveTotal = 0;
 
-var updateStats = function () {
+var Achievement = function (alertText, cheevoText, reward) {
+ this.locked = true;
+ this.alertText = alertText;
+ this.cheevoText = cheevoText;
+ this.reward = reward;
+
+}
+
+Achievement.prototype.unlock = function() {
+  this.locked = false;
+  var $newP = $("<p>")
+  var $newP2 = $("<p>")
+  $newP.text(this.alertText);
+  $newP2.text(this.cheevoText);
+  $("div#log").prepend($newP);
+  $newP.hide().slideDown("slow").delay(5000).fadeOut("slow");
+  $("div#cheevo-box").append($newP2);
+  arbitryClick(this.reward);
+}
+
+var cheevoCheck = function() {
+  if (totalClicks === 1 && firstClick.locked) {
+    firstClick.unlock();
+  }
+  if(totalClicks === 100 && first100Clicks.locked) {
+    first100Clicks.unlock();
+  }
+  if(totalClicks === 1000 && first1000Clicks.locked) {
+    first1000Clicks.unlock();
+  }
+  if(totalEarned >= 1000 && first1000Earned.locked) {
+    first1000Earned.unlock();
+  }
+  if (totalEarned >= 10000 && first10000Earned.locked) {
+    first10000Earned.unlock();
+  }
+  if (totalEarned >= 100000 && first100000Earned.locked) {
+    first100000Earned.unlock();
+  }
+  if (totalEarned >= 1000000 && firstMillionEarned.locked) {
+    firstMillionEarned.unlock();
+  }
+}
+
+var firstClick = new Achievement("One small click for man...", "Your first click!", 0);
+
+var first100Clicks = new  Achievement("Wow! 100 clicks! Bonus 5 APV", "Your first 100 clicks!", 5);
+
+var first1000Clicks = new Achievement("Golly, 1000 clicks! Bonus 100 APV","Your first 1000 clicks!", 100);
+
+var first1000Earned = new Achievement("Cowabunga! 1000 earned APV! Bonus 20 APV", "1000 total APV earned!", 20);
+
+var first10000Earned = new Achievement("Holy guacamole! 10000 earned APV! Bonus 100 APV", "10000 total APV earned!", 100);
+
+var first100000Earned = new Achievement("Slow down there cowboy! 100000 earned APV! Bonus 1000 APV", "100000 total APV earned!", 1000)
+
+var firstMillionEarned = new Achievement("Don't you have anything better to do? Bonus go outside. Please.", "Your parents are ashamed of you.", 100000)
+
+var firstFish = new Achievement("Exploitation is fun! Bonus 2 APV", "You taught a man to fish for the first time!", 2);
+
+var firstClickUp = new Achievement("Double click! Bonus 5 APV", "You upgraded your click for the first time!", 5);
+
+var firstProcrast = new Achievement("Doing science! Bonus 10 APV", "You researched the cure for procrastination for the first time!", 10);
+
+var firstNorris = new Achievement("Killer moves! Bonus 50 APV", "You took lessons from Chuck Norris for the first time!", 50);
+
+var firstPlat = new Achievement("Enlightening! Bonus 100 APV", "You consulted a platypus for the first time!", 100);
+
+var firstExist = new Achievement("Downward spiral! bonus 1000 APV", "You had your first existential crisis!", 1000);
+
+var updateStats = function() {
     $('li#stats-clicks').text("You have clicked " + totalClicks + " times.");
     $('li#stats-earned').text("you have earned a total of " + totalEarned + " APV.");
     $('li#stats-power').text("Your click power is " + clickPower + " APV per click.")
@@ -28,6 +98,7 @@ var arbitryClick = function(number) {
     }
   }
   updateStats();
+  cheevoCheck();
 }
 
 var getNorris = function () {
@@ -40,7 +111,7 @@ var getNorris = function () {
       console.log(rand.value.joke);
       norris.joke = rand.value.joke;
       newP.innerText = norris.joke;
-      var $test = $('#norris-box').append($newP);
+      var $test = $('div#log').prepend($newP);
       $newP.hide().slideDown("slow", function () {
         $newP.fadeOut(2000, function() {
           $newP.remove();
@@ -49,7 +120,6 @@ var getNorris = function () {
     }
   })
 }
-
 
 var fishermen = {
   active: false,
@@ -64,6 +134,9 @@ var fishermen = {
         $apv.text(apvCount);
         $fishermenCost.text(this.cost);
         passiveTotal += this.value;
+        if (firstFish.locked) {
+          firstFish.unlock();
+        }
       }
   }
 }
@@ -81,6 +154,9 @@ var clickUp = {
         $apv.text(apvCount);
         clickPower += 1;
         $('#click-up-cost').text(this.cost);
+        if (firstClickUp.locked) {
+          firstClickUp.unlock();
+        }
       }
   }
 }
@@ -98,6 +174,9 @@ var procrast = {
         $apv.text(apvCount);
         $('#procrast-cost').text(this.cost);
         passiveTotal += this.value;
+        if (firstProcrast.locked) {
+          firstProcrast.unlock();
+        }
       }
   }
 }
@@ -117,6 +196,9 @@ var norris = {
         $('#norris-cost').text(this.cost);
         getNorris();
         passiveTotal += this.value;
+        if (firstNorris.locked) {
+          firstNorris.unlock();
+        }
       }
   }
 }
@@ -134,6 +216,9 @@ var plat = {
         $apv.text(apvCount);
         $('#plat-cost').text(this.cost);
         passiveTotal += this.value;
+        if (firstPlat.locked) {
+          firstPlat.unlock();
+        }
       }
   }
 }
@@ -151,6 +236,9 @@ var exist = {
         $apv.text(apvCount);
         $('#exist-cost').text(this.cost);
         passiveTotal += this.value;
+        if (firstExist.locked) {
+          firstExist.unlock();
+        }
       }
   }
 }
